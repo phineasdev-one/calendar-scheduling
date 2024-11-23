@@ -3,11 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { ReactNode } from "react";
 import Logo from "@/assets/logo.png";
-import { DashboardLinks } from "../components/DashboardLinks";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { ThemeToggle } from "../components/ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +18,8 @@ import { signOut } from "@/lib/auth";
 import { requireUser } from "@/hooks/requireUser.hook";
 import prisma from "@/lib/db";
 import { redirect } from "next/navigation";
+import { ThemeToggle } from "@/components/element/ThemeToggle";
+import DashboardLinks from "@/components/element/DashboardLinks";
 
 async function getUserData(userId: string | undefined) {
   if (!userId) {

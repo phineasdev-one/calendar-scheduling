@@ -10,7 +10,7 @@ import Image from "next/image";
 import React from "react";
 import Logo from "@/assets/logo.png";
 import { signIn } from "@/lib/auth";
-import { GoogleButton } from "./GoogleButton";
+import GoogleButton from "./GoogleButton";
 
 const AuthModal = () => {
   return (

@@ -1,5 +1,5 @@
 import { updateAvailabilityAction } from "@/app/action";
-import { SubmitButton } from "@/app/components/SubmitButton";
+import { SubmitButton } from "@/components/element/SubmitButton";
 import {
   Card,
   CardContent,

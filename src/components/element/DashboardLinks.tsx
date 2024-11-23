@@ -33,7 +33,7 @@ export const dashboardLinks = [
   },
 ];
 
-export function DashboardLinks() {
+const DashboardLinks = () => {
   const pathname = usePathname();
   return (
     <>
@@ -54,4 +54,6 @@ export function DashboardLinks() {
       ))}
     </>
   );
-}
+};
+
+export default DashboardLinks;

@@ -18,17 +18,17 @@ import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { SubmitButton } from "./SubmitButton";
-import { settingsAction } from "../action";
 import { settingsSchema } from "@/lib/zodSchemas";
 import { UploadDropzone } from "@/lib/uploading";
+import { settingsAction } from "@/app/action";
 
-interface IAppProps {
+interface Props {
   fullName?: string;
   email?: string;
   profileImage?: string;
 }
 
-export function SettingsForm({ fullName, email, profileImage }: IAppProps) {
+export function SettingsForm({ fullName, email, profileImage }: Props) {
   const [lastResult, action] = useActionState(settingsAction, undefined);
   const [currentProfileImage, setCurrentProfileImage] = useState(profileImage);
 

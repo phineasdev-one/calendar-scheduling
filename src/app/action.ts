@@ -2,7 +2,11 @@
 
 import { requireUser } from "@/hooks/requireUser.hook";
 import prisma from "@/lib/db";
-import { onboardingSchemaValidation, settingsSchema } from "@/lib/zodSchemas";
+import {
+  EventTypeServerSchema,
+  onboardingSchemaValidation,
+  settingsSchema,
+} from "@/lib/zodSchemas";
 import { parseWithZod } from "@conform-to/zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -82,7 +86,7 @@ export async function settingsAction(prevState: unknown, formData: FormData) {
 export async function updateAvailabilityAction(formData: FormData) {
   const rawData = Object.fromEntries(formData.entries());
 
-  console.log(rawData)
+  console.log(rawData);
   const availabilityData = Object.keys(rawData)
     .filter((key) => key.startsWith("id-"))
     .map((key) => {
@@ -114,5 +118,80 @@ export async function updateAvailabilityAction(formData: FormData) {
   } catch (error) {
     console.error("Error updating availability:", error);
     // return { status: "error", message: "Failed to update availability" };
+  }
+}
+
+export async function CreateEventTypeAction(
+  prevState: unknown,
+  formData: FormData
+) {
+  const session = await requireUser();
+
+  const submission = await parseWithZod(formData, {
+    schema: EventTypeServerSchema({
+      async isUrlUnique() {
+        const data = await prisma.eventType.findFirst({
+          where: {
+            userId: session.user?.id,
+            url: formData.get("url") as string,
+          },
+        });
+        return !data;
+      },
+    }),
+
+    async: true,
+  });
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+
+  await prisma.eventType.create({
+    data: {
+      title: submission.value.title,
+      duration: submission.value.duration,
+      url: submission.value.url,
+      description: submission.value.description,
+      userId: session.user?.id as string,
+      videoCallSoftWare: submission.value.videoCallSoftWare,
+    },
+  });
+
+  return redirect("/dashboard");
+}
+
+export async function updateEventTypeStatusAction(
+  prevState: unknown,
+  {
+    eventTypeId,
+    isChecked,
+  }: {
+    eventTypeId: string;
+    isChecked: boolean;
+  }
+) {
+  try {
+    const session = await requireUser();
+
+    await prisma.eventType.update({
+      where: {
+        id: eventTypeId,
+        userId: session.user?.id as string,
+      },
+      data: {
+        active: isChecked,
+      },
+    });
+
+    revalidatePath(`/dashboard`);
+    return {
+      status: "success",
+      message: "EventType Status updated successfully",
+    };
+  } catch (error) {
+    return {
+      status: "error",
+      message: `Something went wrong ${error}`,
+    };
   }
 }

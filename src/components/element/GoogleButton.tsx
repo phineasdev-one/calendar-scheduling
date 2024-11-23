@@ -6,6 +6,7 @@ import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useFormStatus } from "react-dom";
 import Google from "@/assets/google.svg";
+import React, { FC } from "react";
 
 type Props = {
   text: string;
@@ -22,7 +23,7 @@ type Props = {
   className?: string;
 };
 
-export function GoogleButton({ text, variant, className }: Props) {
+const GoogleButton: FC<Props> = ({ text, variant, className }) => {
   const { pending } = useFormStatus();
 
   return (
@@ -43,4 +44,6 @@ export function GoogleButton({ text, variant, className }: Props) {
       )}
     </>
   );
-}
+};
+
+export default GoogleButton;

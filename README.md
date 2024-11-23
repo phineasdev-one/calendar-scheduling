@@ -1,37 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Calendar Scheduling Application  
 
-## Getting Started
+A modern calendar scheduling application built with **Next.js 14** and **Prisma**. This application allows users to create events, book meeting slots, and manage their schedules with ease.  
 
-First, run the development server:
+## Features  
+- **Event Management**:  
+  - Create, edit, and delete events.  
+  - Customize event details such as title, description, and duration.  
+
+- **Meeting Booking**:  
+  - Allow attendees to view available slots and book meetings.  
+  - Automatic conflict detection to prevent double bookings.  
+
+- **User Authentication**:  
+  - Secure user login and registration.  
+  - Token-based authentication with support for OAuth providers.  
+
+- **Responsive Design**:  
+  - Optimized for both desktop and mobile devices.  
+
+- **Database Management**:  
+  - Leveraging Prisma ORM for database operations.  
+  - Support for PostgreSQL (or any compatible database).  
+
+## Tech Stack  
+
+- **Frontend**:  
+  - [Next.js 14](https://nextjs.org/) for server-rendered React applications.  
+  - TailwindCSS for modern styling.  
+
+- **Backend**:  
+  - API routes in Next.js to handle server-side logic.  
+
+- **Database**:  
+  - [Prisma ORM](https://www.prisma.io/) for database interactions.  
+  - PostgreSQL as the primary database.  
+
+- **Authentication**:  
+  - [NextAuth.js](https://next-auth.js.org/) for authentication and session management.  
+
+## Getting Started  
+
+### Prerequisites  
+Ensure you have the following installed:  
+- Node.js (v18 or later)  
+- PostgreSQL  
+
+### Installation  
+
+1. Clone the repository:  
+   ```bash  
+   git clone https://github.com/phineasdev-one/calendar-scheduling 
+   cd calendar-scheduling  
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
+Configure environment variables:
+Create a .env file at the root of the project and add the following:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+env
+```bash
+AUTH_SECRET=
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+NYLAS_API_SECRET_KEY=
+NYLAS_API_URL=https://api.us.nylas.com
+NYLAS_CLIENT_ID=
+NEXT_PUBLIC_URL=http://localhost:3000
 
-## Learn More
+DATABASE_URL="postgresql://postgres.acvs:password@aws-0-ap-northeast-2.pooler.supabase.com:6543/postgres?pgbouncer=true"
+DIRECT_URL="postgresql://postgres.acvs:password@aws-0-ap-northeast-2.pooler.supabase.com:5432/postgres" 
 
-To learn more about Next.js, take a look at the following resources:
+UPLOADTHING_TOKEN= use uploadthing token
+```
+Set up the database:
+Run the following Prisma commands to set up the database schema:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Roadmap
+ Integrate notifications for event reminders.
+ Add support for recurring events.
+ Enable multi-language support.
+ Implement integration with external calendars (Google, Outlook, etc.).
+Contributing
+Contributions are welcome! Feel free to fork the repository and submit pull requests.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# calendar-scheduling
+Contact
+For inquiries or issues, contact [your email here].
