@@ -83,20 +83,21 @@ export function SettingsForm({ fullName, email, profileImage }: IAppProps) {
             />
             <Label>Profile Image</Label>
             {currentProfileImage ? (
-              <div className="relative size-16">
+              <div className="relative size-28">
                 <Image
                   src={currentProfileImage}
                   alt="Profile"
-                  width={300}
-                  height={300}
-                  className="rounded-lg size-16"
+                  width={500}
+                  height={500}
+                  objectFit="cover"
+                  className="rounded-lg size-28 object-cover"
                 />
                 <Button
                   type="button"
                   onClick={handleDeleteImage}
                   variant="destructive"
                   size="icon"
-                  className="absolute -top-3 -right-3"
+                  className="absolute -top-3 -right-3 size-4"
                 >
                   <X className="size-4" />
                 </Button>

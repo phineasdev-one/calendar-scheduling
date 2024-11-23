@@ -3,6 +3,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Image from "next/image";
@@ -14,6 +15,7 @@ import { GoogleButton } from "./GoogleButton";
 const AuthModal = () => {
   return (
     <Dialog>
+      <DialogTitle></DialogTitle>
       <DialogTrigger asChild>
         <Button>Try for free</Button>
       </DialogTrigger>

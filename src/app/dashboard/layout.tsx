@@ -61,7 +61,7 @@ export default async function DashboardLayout({
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2">
-              <Image src={Logo} alt="Logo" className="size-8" />
+              <Image src={Logo} alt="Logo" className="size-10" />
               <p className="text-xl font-bold">
                 Cal<span className="text-primary">Scheduling</span>
               </p>
@@ -100,13 +100,16 @@ export default async function DashboardLayout({
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="secondary" className="rounded">
+                <Button
+                  variant="ghost"
+                  className="rounded size-14 object-cover"
+                >
                   <img
                     src={session?.user?.image as string}
                     alt="User image"
-                    width={20}
-                    height={20}
-                    className="w-full h-full rounded-full"
+                    width={60}
+                    height={60}
+                    className="w-full h-full rounded-full size-14 object-cover"
                   />
                 </Button>
               </DropdownMenuTrigger>
