@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
 
-interface iAppProps {
+interface Props {
   text: string;
   variant?:
     | "default"
@@ -20,7 +20,7 @@ interface iAppProps {
   className?: string;
 }
 
-export function SubmitButton({ text, variant, className }: iAppProps) {
+export function SubmitButton({ text, variant, className }: Props) {
   const { pending } = useFormStatus();
 
   return (

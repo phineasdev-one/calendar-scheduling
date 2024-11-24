@@ -11,11 +11,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { useActionState } from "react";
-import { SubmitButton } from "@/app/components/SubmitButton";
 import { onboardingAction } from "../action";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { onboardingSchema } from "@/lib/zodSchemas";
+import { SubmitButton } from "@/components/element/SubmitButton";
 
 const OnboardingPage = () => {
   const [lastResult, action] = useActionState(onboardingAction, undefined);

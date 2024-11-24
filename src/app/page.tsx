@@ -1,5 +1,5 @@
+import Navbar from "@/components/element/Navbar";
 import { auth } from "@/lib/auth";
-import Navbar from "./components/Navbar";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
