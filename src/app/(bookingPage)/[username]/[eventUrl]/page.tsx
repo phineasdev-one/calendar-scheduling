@@ -1,10 +1,7 @@
-import { createMeetingAction } from "@/app/action";
+import BookingForm from "@/components/element/BookingForm";
 import { RenderCalendar } from "@/components/element/RenderCalendar";
-import { SubmitButton } from "@/components/element/SubmitButton";
 import { TimeSlots } from "@/components/element/TimeSlots";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import prisma from "@/lib/db";
 import { BookMarked, CalendarX2, Clock } from "lucide-react";
@@ -59,7 +56,9 @@ const BookingPage = async ({
 }) => {
   const params = await rawParams; // Await the params object
   const searchParams = await rawSearchParams; // Await searchParams
-  const selectedDate = searchParams.date ? new Date(searchParams.date) : new Date();
+  const selectedDate = searchParams.date
+    ? new Date(searchParams.date)
+    : new Date();
   const eventType = await getData(params.username, params.eventName);
 
   const formattedDate = new Intl.DateTimeFormat("en-US", {
@@ -73,8 +72,8 @@ const BookingPage = async ({
   return (
     <div className="min-h-screen w-screen flex items-center justify-center">
       {showForm ? (
-        <Card className="max-w-[600px]">
-          <CardContent className="p-5 grid md:grid-cols-[1fr,auto,1fr] gap-4">
+        <Card className="max-w-[1000px]">
+          <CardContent className="p-20 grid md:grid-cols-[1fr,auto,1fr] gap-4">
             <div>
               <Image
                 src={eventType.user.image as string}
@@ -117,31 +116,13 @@ const BookingPage = async ({
               className="hidden md:block h-full w-[1px]"
             />
 
-            <form
-              className="flex flex-col gap-y-4"
-              action={createMeetingAction}
-            >
-              <input type="hidden" name="eventTypeId" value={eventType.id} />
-              <input type="hidden" name="username" value={params.username} />
-              <input type="hidden" name="fromTime" value={searchParams.time} />
-              <input type="hidden" name="eventDate" value={searchParams.date} />
-              <input
-                type="hidden"
-                name="meetingLength"
-                value={eventType.duration}
-              />
-              <div className="flex flex-col gap-y-1">
-                <Label>Your Name</Label>
-                <Input name="name" placeholder="Your Name" />
-              </div>
-
-              <div className="flex flex-col gap-y-1">
-                <Label>Your Email</Label>
-                <Input name="email" placeholder="phianh.dev@gmail.com" />
-              </div>
-
-              <SubmitButton text="Book Meeting" />
-            </form>
+            <BookingForm
+              id={eventType.id}
+              username={params.username}
+              time={searchParams.time}
+              date={searchParams.date}
+              duration={eventType.duration}
+            />
           </CardContent>
         </Card>
       ) : (

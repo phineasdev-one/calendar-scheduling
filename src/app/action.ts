@@ -198,7 +198,7 @@ export async function updateEventTypeStatusAction(
   }
 }
 
-export async function createMeetingAction(formData: FormData) {
+export async function createMeetingAction(prevState: unknown, formData: FormData) {
   const getUserData = await prisma.user.findUnique({
     where: {
       username: formData.get("username") as string,

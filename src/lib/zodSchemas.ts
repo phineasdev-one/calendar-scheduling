@@ -61,6 +61,12 @@ export const eventTypeSchema = z.object({
   videoCallSoftWare: z.string(),
 });
 
+export const bookingSchema = z.object({
+  name: z.string().min(3).max(150),
+  email: z.string().email(),
+});
+
+
 export function EventTypeServerSchema(options?: {
   isUrlUnique: () => Promise<boolean>;
 }) {
