@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  client:
+    image: phianhdev/my-calendar:latest
+    container_name: CALENDAR-FE
+    build: .
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    restart: unless-stopped
+    labels:
+      io.portainer.accesscontrol.users: admin
+
+  nginx:
+    container_name: Blog-Nginx-Client
+    build: ./nginx
+    ports:
+      - 3008:80
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    restart: unless-stopped
+    labels:
+      io.portainer.accesscontrol.users: admin
+    depends_on:
+      - client
